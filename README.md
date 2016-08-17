@@ -1,0 +1,2 @@
+# slidingpuzzle7
+The puzzle consists of 3 yellow chips, 3 blue chips and one empty space, as shown in the figure. There are 2 legal movements with associated costs:   A chip can be moved to an adjacent place; that has a cost of 1. A chip can jump over one or two chips to an empty position; that has a cost equal to the number of chips it jumps through.  The objective is to get all chips of the same color at one side of the puzzle.  |C | C | C |    |A | A | A |  
