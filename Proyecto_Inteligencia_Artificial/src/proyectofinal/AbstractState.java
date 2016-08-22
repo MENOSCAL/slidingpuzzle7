@@ -24,7 +24,7 @@ public abstract class AbstractState implements State{
     
     /*
     @Override
-    public Iterable<State> getPossibleMoves() {
+    public Iterable<State> expand() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

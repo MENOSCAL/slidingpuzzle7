@@ -17,7 +17,7 @@ public class Principal {
      * @param args the command line arguments
      */
     
-    private static void trySolver(State initialState, AbstractSolver solver) {
+    private static void testSolver(State initialState, AbstractSolver solver) {
 		//System.out.println("Solving with "+solver);
 		List<State> solution = solver.solve(initialState);
 		System.out.println("  States visited: "+solver.getVisitedStateCount());
@@ -30,14 +30,15 @@ public class Principal {
 			System.out.println("   "+solution.size()+" states(s)");
 		}
 	}
-	private static void trySolvers(State initialState) {
-		trySolver(initialState, new BestFirstSolver());
+	private static void testSolvers(State initialState) {
+		testSolver(initialState, new BestFirst());
 	}
     
     public static void main(String[] args) {
+        char chips[] = {'y','y','y',' ','b','b','b'};
         System.out.println("Sliding Tile Puzzle");
 	System.out.println();
-	trySolvers(new SlidingTileState());
+	testSolvers(new SlidingPuzzle(chips));
     }
     
 }

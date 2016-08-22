@@ -29,7 +29,7 @@ public abstract class AbstractSolver implements Solver{
             if(s.isSolution())
                 return findPath(s);
             closed.add(s);
-            Iterable<State> moves = s.getPossibleMoves();
+            Iterable<State> moves = s.expand();
             for (State move : moves)
                 if(!closed.contains(move))
                     addState(move);

@@ -12,7 +12,7 @@ package proyectofinal;
 
 public interface State {
     
-    public Iterable<State> getPossibleMoves();
+    public Iterable<State> expand();
     
     public boolean isSolution();
     
