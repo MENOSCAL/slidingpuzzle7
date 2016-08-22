@@ -12,7 +12,7 @@ import java.util.PriorityQueue;
  *
  * @author victor
  */
-public class BestFirst extends AbstractSolver{
+public class BestFirst extends Solver{
 
     private PriorityQueue<State> queue = null;
     

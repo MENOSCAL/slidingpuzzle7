@@ -40,12 +40,12 @@ public class SlidingPuzzle extends AbstractState{
     
     private int getSpace(){
         for(int i=0; i<chips.length; i++)
-            if(chips[i] == ' ')
+            if(chips[i] == 'w')
                 return i;
         return 0;
     }
 
-    private int countWhiteTiles(){
+    private int countChips(){
         int sum = 0;
         for(int i=0; i<chips.length; i++)
             if(chips[i]=='y')
@@ -57,12 +57,12 @@ public class SlidingPuzzle extends AbstractState{
     
     @Override
     public boolean isSolution() {
-        return countWhiteTiles() == 0;
+        return countChips() == 0;
     }
 
     @Override
     public double getHeuristic() {
-        return countWhiteTiles();
+        return countChips();
     }
     
     public boolean equals(Object o){
@@ -79,6 +79,9 @@ public class SlidingPuzzle extends AbstractState{
     public String toString(){
         return "Sliding Tile State ["+new String(chips)+"] "+
                 "(moves: "+ getDistance() +") (heurisctic: "+getHeuristic()+")";
+    }
+    public String getroot(){
+        return new String(chips);
     }
     
 }

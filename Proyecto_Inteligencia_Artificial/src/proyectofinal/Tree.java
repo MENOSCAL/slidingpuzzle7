@@ -29,19 +29,20 @@ public class Tree extends JFrame {
 
     
     mxICell a,b,c,d,e,f,g,h,i,j,k,l;
-
-    public Tree() {
+    
+    public Tree(String chips) {
         super("Tree");
 
         final mxGraph grafico = new mxGraph();
         Object parent = grafico.getDefaultParent();
         
-        int[] ia = { 1, 10, 5, 3, 4 };
+        String ia = new String(chips);
+        
 	PriorityQueue<Integer> pq1 = new PriorityQueue<Integer>();
         //utilizar add
-	for (int x : ia) {
+	/*for (int x : ia) {
             pq1.offer(x);
-	}
+	}*/
  
 	
         
@@ -51,7 +52,7 @@ public class Tree extends JFrame {
         
         try {
 
-            a = (mxICell) grafico.insertVertex(parent, null, pq1, 0, 0, 80, 30);
+            a = (mxICell) grafico.insertVertex(parent, null, ia, 0, 0, 80, 30);
             b = (mxICell) grafico.insertVertex(parent, null, "b", 0, 0, 80, 30);
             c = (mxICell) grafico.insertVertex(parent, null, "c", 0, 0, 80, 30);
             d = (mxICell) grafico.insertVertex(parent, null, "d", 0, 0, 80, 30);

@@ -21,4 +21,6 @@ public interface State {
     public double getDistance();
     
     public State getParent();
+    
+    public String getroot();
 }

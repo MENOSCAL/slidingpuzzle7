@@ -28,7 +28,10 @@ public class Principal {
      * @param args the command line arguments
      */
     
-    private static void testSolver(State initialState, AbstractSolver solver) {
+    private static void testSolver(State initialState, Solver solver) {
+        
+        String hola = null;
+        
 		//System.out.println("Solving with "+solver);
 		List<State> solution = solver.solve(initialState);
 		System.out.println("  States visited: "+solver.getVisitedStateCount());
@@ -39,6 +42,22 @@ public class Principal {
 			for (State s : solution)
 				System.out.println("    "+s);
 			System.out.println("   "+solution.size()+" states(s)");
+                        
+                        for (State s1 : solution){
+                            System.out.println(s1.getroot());
+                            hola= s1.getroot();
+                        }
+                            
+                        
+                        
+                        
+                        
+                                        Tree frame = new Tree(hola);
+                
+                frame.setSize(800, 500);
+
+                frame.setVisible(true);
+                
 		}
 	}
 	private static void testSolvers(State initialState) {
@@ -47,15 +66,20 @@ public class Principal {
     
     public static void main(String[] args) throws Exception {
         
-        
-        
+              
         
         
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         JFrame frame = new JFrame("SlidingPuzzle");
-        frame.setSize(750, 200);
+        frame.setSize(750, 400);
         frame.setLocationByPlatform(true);
         JList imageList = crearListImage();     
+        
+        Label lsubt = new Label("Goal:");
+        lsubt.setFont(new Font("Arial", Font.BOLD, 16));
+        lsubt.setForeground(Color.BLUE);
+        Label lgoal = new Label("Blue Chips Left");
+        lgoal.setFont(new Font("Arial", Font.BOLD, 16));
         
        String[] listacombo = new String[] {"Menor número de saltos ", "Menor costo",};
         JComboBox<String> funcionescombo = new JComboBox<>(listacombo); 
@@ -64,52 +88,67 @@ public class Principal {
         String selectedHeuristic = (String) funcionescombo.getSelectedItem();
         funcionescombo.setForeground(Color.BLUE);
         funcionescombo.setFont(new Font("Arial", Font.BOLD, 14));
+      
         
-        JButton buttonjugar = new JButton( "JUGAR");
-        buttonjugar.addActionListener(new ActionListener() {
+        JButton bcomenzar = new JButton( "Comenzar");
+        bcomenzar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 
-                try {
+                    imageList.disable();
                     
-                    char chips[] = {'y','y','y',' ','b','b','b'};
+                    DefaultListModel model = (DefaultListModel)imageList.getModel();
+        
+        
+        
+                    
+                    char chips[] = {model.get(0).toString().charAt(0),model.get(1).toString().charAt(0),model.get(2).toString().charAt(0),
+                        model.get(3).toString().charAt(0),model.get(4).toString().charAt(0),model.get(5).toString().charAt(0),
+                        model.get(6).toString().charAt(0)};
+                    
+                    
+                    
                     System.out.println("Sliding Tile Puzzle");
                     System.out.println();
                     testSolvers(new SlidingPuzzle(chips));
-
-                } finally {
                     
-                }
+                    
+                      
+                    
             }
         });
         
-        JButton buttonarbol = new JButton( "VER ÁRBOL");
-        buttonarbol.addActionListener(new ActionListener() {
+        
+      /*  
+        JButton barbol = new JButton( "Ver Árbol");
+        barbol.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 
+                char c[]= {'f','g'};
                 try {
-                Tree frame = new Tree();
+                Tree frame = new Tree(c);
                 
-                frame.setSize(800, 600);
+                frame.setSize(800, 500);
 
                 frame.setVisible(true);
-                    
+           
 
-                } finally {
-                    
-                }
+                } finally{}
             }
         });
-        
+       */ 
         JPanel toolBar = new JPanel();
        
         
         toolBar.add(funcionescombo);
-        toolBar.add( buttonjugar);
-        toolBar.add( buttonarbol);
+        toolBar.add( bcomenzar);
+        //toolBar.add( barbol);
+        
+        toolBar.add( lsubt);
+        toolBar.add( lgoal);
     
         frame.add( toolBar, BorderLayout.NORTH);
         frame.getContentPane().add(new JScrollPane(imageList));
@@ -134,19 +173,19 @@ public class Principal {
         imageList.setDragEnabled(true);
         imageList.setDropMode(DropMode.INSERT);
         imageList.setTransferHandler(new ImageTransferHandler(imageList));
-
+        
         return imageList;
 }
 
     private static DefaultListModel ModeloCrear() {
         DefaultListModel model = new DefaultListModel();
-        model.addElement(new IcoColor(Color.YELLOW));
-        model.addElement(new IcoColor(Color.YELLOW));
-        model.addElement(new IcoColor(Color.YELLOW));
-        model.addElement(new IcoColor(Color.WHITE));
-        model.addElement(new IcoColor(Color.BLUE));
-        model.addElement(new IcoColor(Color.BLUE));
-        model.addElement(new IcoColor(Color.BLUE));
+        model.addElement(new IcoColor(Color.YELLOW,"y"));
+        model.addElement(new IcoColor(Color.YELLOW,"y"));
+        model.addElement(new IcoColor(Color.YELLOW,"y"));
+        model.addElement(new IcoColor(Color.WHITE,"w"));
+        model.addElement(new IcoColor(Color.BLUE,"b"));
+        model.addElement(new IcoColor(Color.BLUE,"b"));
+        model.addElement(new IcoColor(Color.BLUE,"b"));
         
         
         
@@ -259,9 +298,11 @@ public class Principal {
 
     static class IcoColor implements Icon, Serializable {
         private Color color;
+        private String name;
 
-        IcoColor(Color color) {
+        IcoColor(Color color,String name) {
             this.color = color;
+            this.name = name;
         }
 
         public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -282,6 +323,11 @@ public class Principal {
                 return false;
             }
             return color.equals(((IcoColor)o).color);
+        }
+
+        @Override
+        public String toString() {
+            return name;
         }
 
     }
