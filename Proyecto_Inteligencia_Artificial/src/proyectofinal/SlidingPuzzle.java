@@ -15,9 +15,11 @@ import java.util.Set;
 public class SlidingPuzzle extends AbstractState{
 
     private char chips[];
+    private int valor_heuristica;
     
-    public SlidingPuzzle(char chips[]) {
+    public SlidingPuzzle(char chips[], int valor_heuristica) {
         this.chips= chips;
+        this.valor_heuristica=valor_heuristica;
     }
 
     public SlidingPuzzle(SlidingPuzzle parent, int space, int tile) {
@@ -54,15 +56,18 @@ public class SlidingPuzzle extends AbstractState{
                         sum++;
         return sum;
     }
-    
+    /*
     @Override
     public boolean isSolution() {
         return countChips() == 0;
-    }
+    }*/
 
     @Override
     public double getHeuristic() {
-        return countChips();
+        if(this.valor_heuristica==1)
+            return countChips();
+        else
+            return countChips();
     }
     
     public boolean equals(Object o){

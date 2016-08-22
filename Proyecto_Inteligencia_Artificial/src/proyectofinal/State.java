@@ -14,7 +14,7 @@ public interface State {
     
     public Iterable<State> expand();
     
-    public boolean isSolution();
+    //public boolean isSolution();
     
     public double getHeuristic();
     

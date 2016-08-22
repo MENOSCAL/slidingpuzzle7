@@ -26,7 +26,7 @@ public abstract class Solver{
         addState(initialState);
         while(hasElements()){
             State s = nextState();
-            if(s.isSolution())
+            if(s.getHeuristic()==0)
                 return findPath(s);
             closed.add(s);
             Iterable<State> moves = s.expand();

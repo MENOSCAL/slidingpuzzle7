@@ -47,12 +47,9 @@ public class Principal {
                             System.out.println(s1.getroot());
                             hola= s1.getroot();
                         }
-                            
+              
                         
-                        
-                        
-                        
-                                        Tree frame = new Tree(hola);
+                         Tree frame = new Tree(solution);
                 
                 frame.setSize(800, 500);
 
@@ -66,8 +63,7 @@ public class Principal {
     
     public static void main(String[] args) throws Exception {
         
-              
-        
+        final  int valor_heuristica;
         
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         JFrame frame = new JFrame("SlidingPuzzle");
@@ -88,33 +84,36 @@ public class Principal {
         String selectedHeuristic = (String) funcionescombo.getSelectedItem();
         funcionescombo.setForeground(Color.BLUE);
         funcionescombo.setFont(new Font("Arial", Font.BOLD, 14));
+        
+        if(funcionescombo.getSelectedIndex()==0){
+            valor_heuristica=1;
+        }
+        else{
+            valor_heuristica=2;
+        }
+            
       
         
         JButton bcomenzar = new JButton( "Comenzar");
         bcomenzar.addActionListener(new ActionListener() {
+            
+            
+            
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 
-                    imageList.disable();
+                    //imageList.disable();
                     
                     DefaultListModel model = (DefaultListModel)imageList.getModel();
-        
-        
-        
                     
                     char chips[] = {model.get(0).toString().charAt(0),model.get(1).toString().charAt(0),model.get(2).toString().charAt(0),
                         model.get(3).toString().charAt(0),model.get(4).toString().charAt(0),model.get(5).toString().charAt(0),
                         model.get(6).toString().charAt(0)};
                     
-                    
-                    
                     System.out.println("Sliding Tile Puzzle");
                     System.out.println();
-                    testSolvers(new SlidingPuzzle(chips));
-                    
-                    
-                      
+                    testSolvers(new SlidingPuzzle(chips, valor_heuristica));
                     
             }
         });

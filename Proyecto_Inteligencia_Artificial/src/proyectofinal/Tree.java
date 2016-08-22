@@ -23,6 +23,7 @@ import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
+import java.util.List;
 import java.util.PriorityQueue;
 
 public class Tree extends JFrame {
@@ -30,13 +31,14 @@ public class Tree extends JFrame {
     
     mxICell a,b,c,d,e,f,g,h,i,j,k,l;
     
-    public Tree(String chips) {
+    public Tree(List<State> solution ) {
         super("Tree");
 
         final mxGraph grafico = new mxGraph();
         Object parent = grafico.getDefaultParent();
         
-        String ia = new String(chips);
+        String ia = "ff";
+        
         
 	PriorityQueue<Integer> pq1 = new PriorityQueue<Integer>();
         //utilizar add
