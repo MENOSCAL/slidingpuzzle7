@@ -30,7 +30,7 @@ public class Principal {
     
     private static void testSolver(State initialState, Solver solver) {
         
-        String hola = null;
+        //String hola = null;
         
 		//System.out.println("Solving with "+solver);
 		List<State> solution = solver.solve(initialState);
@@ -42,7 +42,7 @@ public class Principal {
 			for (State s : solution)
 				System.out.println("    "+s);
 			System.out.println("   "+solution.size()+" states(s)");
-                        
+                        /*
                         for (State s1 : solution){
                             System.out.println(s1.getroot());
                             hola= s1.getroot();
@@ -50,10 +50,12 @@ public class Principal {
               
                         
                          Tree frame = new Tree(solution);
+                        
                 
                 frame.setSize(800, 500);
 
                 frame.setVisible(true);
+                        */
                 
 		}
 	}
@@ -114,6 +116,13 @@ public class Principal {
                     System.out.println("Sliding Tile Puzzle");
                     System.out.println();
                     testSolvers(new SlidingPuzzle(chips, valor_heuristica));
+                    
+                    Tree frame = new Tree();
+                        
+                
+                    frame.setSize(800, 500);
+
+                    frame.setVisible(true);
                     
             }
         });

@@ -18,6 +18,8 @@ public abstract class Solver{
 
     private Set<State> closed = new HashSet<State>();
     
+    public static LinkedList<State> path = new LinkedList<State>();
+    public static LinkedList<State> estados = new LinkedList<State>();
     
     public List<State> solve(State initialState) {
         // Reset closed set
@@ -26,6 +28,9 @@ public abstract class Solver{
         addState(initialState);
         while(hasElements()){
             State s = nextState();
+            
+            estados.add(s);
+            
             if(s.getHeuristic()==0)
                 return findPath(s);
             closed.add(s);
@@ -42,11 +47,12 @@ public abstract class Solver{
     }
     
     private List<State> findPath(State solution){
-        LinkedList<State> path = new LinkedList<State>();
+       // LinkedList<State> path = new LinkedList<State>();
         while(solution != null){
             path.addFirst(solution);
             solution = solution.getParent();
         }
+        System.out.println("Ruta SOLUCION, raices: " +path +"\n" );
         return path;
     }
     
