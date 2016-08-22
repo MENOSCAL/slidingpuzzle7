@@ -27,8 +27,7 @@ import java.util.PriorityQueue;
 
 public class Tree extends JFrame {
 
-    private static final long serialVersionUID = 8083868183987456695L;
-
+    
     mxICell a,b,c,d,e,f,g,h,i,j,k,l;
 
     public Tree() {
@@ -44,7 +43,7 @@ public class Tree extends JFrame {
             pq1.offer(x);
 	}
  
-	System.out.println("pq1: " + pq1);
+	
         
         grafico.getModel().beginUpdate();
         
@@ -93,10 +92,5 @@ public class Tree extends JFrame {
         
 
     }
-    public static void main(String[] args) {
-        Tree frame = new Tree();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
-        frame.setVisible(true);
-    }
+ 
 }
