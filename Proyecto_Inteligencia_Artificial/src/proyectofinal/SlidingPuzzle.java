@@ -92,7 +92,7 @@ public class SlidingPuzzle extends AbstractState{
     }
     
     public String toString(){
-        return "Sliding Tile State ["+new String(chips)+"] "+
+        return "Estado ["+new String(chips)+"] "+
                 " (heurisctic: "+getHeuristic()+")";
     }
     public String getroot(){

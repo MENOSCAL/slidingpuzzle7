@@ -22,6 +22,7 @@ import com.mxgraph.layout.mxIGraphLayout;
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.util.mxConstants;
 import com.mxgraph.view.mxGraph;
 import java.util.PriorityQueue;
 
@@ -29,24 +30,22 @@ import java.util.*;
 
 public class Tree extends JFrame {
 
-    
-    mxICell a,b,c,d,e,f,g,h,i,j,k,l;
-
     public Tree() {
         super("Tree");
        
         final mxGraph grafico = new mxGraph();
-        Object parent = grafico.getDefaultParent();
-      
+        Object parent = grafico.getDefaultParent();      
         grafico.getModel().beginUpdate();
         
         try {
     
             Object[] raices = Solver.path.toArray();
             Object[] estados = Solver.estados.toArray();
-            
+                        
+            //Object totalestados = (mxICell) grafico.insertVertex(parent, null, Solver.estados.size()+" Estados Totales", 0, 0, 100, 30);                
+            //grafico.setCellStyles(mxConstants.STYLE_FILLCOLOR, "#E9BCFF", new Object[]{totalestados});
             for (int i = 0; i < Solver.path.size(); i++) {
-            System.out.println("Raices:" + raices[i]);            
+            //System.out.println("Raices:" + raices[i]);            
             }
             
             int j =0;
@@ -57,7 +56,6 @@ public class Tree extends JFrame {
                     System.out.println("Estados:" + estados[i]);                      
                                  if(raices[j].equals(estados[i])){                                     
                                      indices = addInt(indices, i);
-
                                      j++;
                           }            
                       }
@@ -73,50 +71,43 @@ public class Tree extends JFrame {
                 int r=0;
                 System.out.println("TAMAÑO ESTADOS"+Solver.estados.size());
                 for (int w = 0; w < Solver.estados.size(); w++) {
-                        estados[w] = (mxICell) grafico.insertVertex(parent, null, Solver.estados.get(w), 0, 0, 80, 30);                
+                        estados[w] = (mxICell) grafico.insertVertex(parent, null, Solver.estados.get(w), 0, 0,120, 30);                
                         
                         System.out.println("r indice : "+r + "valor"+indices[r]);
                         System.out.println("i: "+w);
-                        
-                        
                         //Aqui en 
                         //estados[r] 
                         //creo que deberia de ser 
                         //estados[indices[r]
-                        
                         grafico.insertEdge(parent, null, "", estados[r], estados[w]);          
-                        
-                        
                         if(w==indices[r])
                         {
                         System.out.println("Indices iguales");
                         r++;
+                        //grafico.setCellStyles(mxConstants.STYLE_FILLCOLOR, "#FCFF94", new Object[]{estados[w]});
                         }
                         
 
                 }
-                 
-                
-
-
-   
-    
-  
-    
-                
-                    
+                //SOLUCION FINAL
+                grafico.setCellStyles(mxConstants.STYLE_FILLCOLOR, "#FCFF94", new Object[]{estados[Solver.estados.size()-1]});
             } finally {
+                
                 grafico.getModel().endUpdate();
             }
-      
-     
             
-            //System.out.println(Arrays.toString(AbstractSolver.path.toArray()));
-
+            
 
         } finally {
             grafico.getModel().endUpdate();
         }
+        while (!Solver.path.isEmpty()) {
+        Solver.path.removeFirst();
+        }
+        while (!Solver.estados.isEmpty()) {
+        Solver.estados.removeFirst();
+        }
+        
 
         // define layout
         mxIGraphLayout layout = new mxHierarchicalLayout(grafico);

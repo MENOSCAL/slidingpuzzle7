@@ -98,10 +98,6 @@ public class Principal {
         
         JButton bcomenzar = new JButton( "Comenzar");
         bcomenzar.addActionListener(new ActionListener() {
-            
-            
-            
-
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 
@@ -112,6 +108,8 @@ public class Principal {
                     char chips[] = {model.get(0).toString().charAt(0),model.get(1).toString().charAt(0),model.get(2).toString().charAt(0),
                         model.get(3).toString().charAt(0),model.get(4).toString().charAt(0),model.get(5).toString().charAt(0),
                         model.get(6).toString().charAt(0)};
+                    
+                    System.out.println("modelo:"+ model.toString());
                     
                     System.out.println("Sliding Tile Puzzle");
                     System.out.println();
@@ -124,6 +122,43 @@ public class Principal {
 
                     frame.setVisible(true);
                     
+            }
+        });
+        
+        
+        
+        JButton versolucion = new JButton( "Árbol SOLUCIÓN");
+        versolucion.addActionListener(new ActionListener() {
+ 
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+
+                    DefaultListModel model = (DefaultListModel)imageList.getModel();
+                    
+                    char chips[] = {
+                        model.get(0).toString().charAt(0),
+                        model.get(1).toString().charAt(0),
+                        model.get(2).toString().charAt(0),
+                        model.get(3).toString().charAt(0),
+                        model.get(4).toString().charAt(0),
+                        model.get(5).toString().charAt(0),
+                        model.get(6).toString().charAt(0)
+                    };
+                    
+                    System.out.println("modelo:"+ model.toString());
+                    
+                    System.out.println("Sliding Tile Puzzle");
+                    System.out.println();
+                    testSolvers(new SlidingPuzzle(chips, valor_heuristica));
+                    
+                    Treesolucion frame = new Treesolucion();
+                        
+                
+                    frame.setSize(800, 500);
+
+                    frame.setVisible(true);
+        
             }
         });
         
@@ -153,6 +188,8 @@ public class Principal {
         
         toolBar.add(funcionescombo);
         toolBar.add( bcomenzar);
+        toolBar.add( versolucion);
+        
         //toolBar.add( barbol);
         
         toolBar.add( lsubt);
@@ -264,6 +301,7 @@ public class Principal {
                 model.removeElement(draggedImage);
                 
                 model.add(dropIndex, draggedImage);
+                
                 
                 
                 return true;
